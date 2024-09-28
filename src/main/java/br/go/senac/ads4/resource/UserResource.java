@@ -2,7 +2,9 @@ package br.go.senac.ads4.resource;
 
 import br.go.senac.ads4.dto.UserDto;
 import br.go.senac.ads4.interfaces.IResource;
+import br.go.senac.ads4.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/users" )
 public class UserResource implements IResource<UserDto, Integer> {
-    /**
-     * Mètodo para criar T
-     *
-     * @param entity
-     * @return
-     */
+
+    @Autowired
+    UserService userService;
+
     @Override
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -26,43 +26,32 @@ public class UserResource implements IResource<UserDto, Integer> {
     public UserDto create(@RequestBody UserDto entity) {
         log.info("UserResource::iniciado");
         log.debug("Valores: {}", entity);
-        return null;
+
+        return userService.creat(entity);
     }
 
-    /**
-     * Método para consultar T baseado no identificador N informado
-     *
-     * @param id
-     * @return
-     */
     @Override
     @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public UserDto get(@PathVariable Integer id) {
-        return null;
+        log.info("UserResource::get(id)");
+        log.debug("Valores: {}", id);
+
+        return userService.read(id);
     }
 
-    /**
-     * Retorna uma lista de T
-     *
-     * @return
-     */
     @Override
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public List<UserDto> get() {
-        return null;
+        log.info("UserResource::get");
+        log.debug("Valores: sem parâmetro");
+
+        return userService.read();
     }
 
-    /**
-     * Iremos passar N(id) para buscar o registro e T(entity) para atualizar o objeto;
-     *
-     * @param id
-     * @param entity
-     * @return
-     */
     @Override
     @PutMapping(
             value = "/{id}",
@@ -72,17 +61,19 @@ public class UserResource implements IResource<UserDto, Integer> {
     public UserDto update(
             @PathVariable Integer id,
             @RequestBody UserDto entity) {
-        return null;
+
+        log.info("UserResource::update");
+        log.debug("Valores: {} e {}", id, entity);
+
+        return userService.update(id, entity);
     }
 
-    /**
-     * Deleta um registro com base no identificador N(id)
-     *
-     * @param id
-     */
     @Override
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Integer id) {
+        log.info("UserResource::delete");
+        log.debug("Valores: {}", id, id);
 
+        userService.delete(id);
     }
 }
