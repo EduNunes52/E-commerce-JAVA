@@ -16,7 +16,7 @@ application:
 
 springdoc:
   swagger-ui:
-    path:"/swagger-ui.html"
+    path: "/swagger-ui.html"
 
 spring:
   output:
