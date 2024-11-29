@@ -23,6 +23,8 @@ public class UserResource implements IResource<UserDto, Integer> {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
+
+    
     public UserDto create(@RequestBody UserDto entity) {
         log.info("UserResource::iniciado");
         log.debug("Valores: {}", entity);

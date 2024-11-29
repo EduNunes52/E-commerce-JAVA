@@ -20,6 +20,4 @@ public interface IService <T, N>{
 
     public void delete(N id);
 
-
-
 }
