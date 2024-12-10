@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/shipper")
 public class ShipperResource implements IResource<ShipperDto, Integer>{
 
+    //injeção de dependencia
     final ShipperService shipperService;
 
     public ShipperResource(ShipperService shipperService) {
@@ -34,7 +35,8 @@ public class ShipperResource implements IResource<ShipperDto, Integer>{
     )
     public ShipperDto create(@RequestBody ShipperDto entity) {
         log.info("ShipperResource::create");
-        return null;
+
+        return shipperService.creat(entity);
     }
 
     /**
@@ -49,7 +51,7 @@ public class ShipperResource implements IResource<ShipperDto, Integer>{
     )
     public ShipperDto get(@PathVariable Integer id) {
         log.info("ShipperResource::get(id)");
-        return null;
+        return shipperService.read(id);
     }
 
     /**
@@ -61,7 +63,7 @@ public class ShipperResource implements IResource<ShipperDto, Integer>{
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ShipperDto> get() {
         log.info("ShipperResource::get()");
-        return List.of();
+        return shipperService.read();
     }
 
     /**
@@ -79,7 +81,7 @@ public class ShipperResource implements IResource<ShipperDto, Integer>{
     public ShipperDto update(@PathVariable Integer id,
                              @RequestBody ShipperDto entity) {
         log.info("ShipperResource::update(id,entity)");
-        return null;
+        return shipperService.update(id, entity);
     }
 
     /**
@@ -91,6 +93,6 @@ public class ShipperResource implements IResource<ShipperDto, Integer>{
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Integer id) {
         log.info("ShipperResource::delete(id)");
-
+        shipperService.delete(id);
     }
 }

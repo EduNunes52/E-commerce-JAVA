@@ -4,6 +4,11 @@ package br.go.senac.ads4.model;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 
 @Entity
 @Table

@@ -34,7 +34,7 @@ spring:
     password: ${DATABASE_PASSWORD:2021}
   jpa:
     hibernate:
-      ddl-auto: none #create-drop
+      ddl-auto: update #create-drop
     show-sql: true #Opcao para apresentar a execucao de SQL no projeto.
     open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
